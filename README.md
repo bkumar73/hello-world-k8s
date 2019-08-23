@@ -56,7 +56,7 @@
 
 ## Deploy hello-service & world-service with istio enabled
 
-    Enable Istio-Injection in namespace Demo:-
+    Enable Auth-Injection in namespace Demo:-
         kubectl apply -f Infra/namespace/demo.yaml
     Change istio.enabled to true in values.yaml file in both service's helm charts.
 
