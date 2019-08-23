@@ -1,0 +1,49 @@
+buildscript {
+    repositories {
+        repositories {
+            maven { url maven_central }
+            maven { url gradle_plugins_repo }
+            maven { url spring_repo_release }
+        }    }
+    dependencies {
+        classpath("gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.4.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.palantir.docker'
+
+bootJar {
+    baseName = 'gradle2'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    // tag::actuator[]
+    // end::actuator[]
+    // tag::tests[]
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    // end::tests[]
+}
+
+docker {
+    dependsOn build
+    def dockerrepo = project.properties.getOrDefault('dockerusername', 'singhravindra')
+    name dockerrepo +"singhravindra/world-service:latest"
+    dockerfile file('src/main/resources/docker/Dockerfile')
+    files bootJar.archivePath
+    buildArgs(['JAR_FILE': "${bootJar.archiveName}"])
+}
+

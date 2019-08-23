@@ -1,0 +1,25 @@
+{{- if .Values.istio.enabled   }}
+  apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.istio.virtualservice.name }}
+  labels:
+      release: {{ .Values.release.type }}
+      helm.sh/chart: {{ include "hello-service.chart" . }}
+      instance: {{ .Release.Name }}
+      managed-by: {{ .Release.Service }}
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - http-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 80
+        host: {{ .Release.Name }}-{{ .Values.service.name }}.{{ .Values.namespace }}.svc.cluster.local
+{{- end }}

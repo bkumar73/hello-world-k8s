@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: hello-service
+message: ${MESSAGE}
+world-service-url: ${WORLD_SERVICE_URL}
+server:
+  port: 8080

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello-service-hello-service
+data:
+  message: hello
+  world_service_address: http://world-service-world-service:80

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: world-service-world-service
+  namespace: demo
+data:
+  message: world

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-{{ .Values.deployment.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    release: {{ .Values.release.type }}
+    app.kubernetes.io/name: {{ include "world-service.name" . }}
+    helm.sh/chart: {{ include "world-service.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: {{ .Release.Name }}
+      app.kubernetes.io/managed-by: {{ .Release.Service }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+    spec:
+      containers:
+      - name: {{ .Values.deployment.name }}
+        image: {{ .Values.deployment.image }}
+        env:
+        - name: MESSAGE
+          valueFrom:
+            configMapKeyRef:
+              name: {{ .Release.Name }}-{{ .Values.configMap.name }}
+              key: message
+        ports:
+        - containerPort: {{ .Values.deployment.port }}

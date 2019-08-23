@@ -1,0 +1,33 @@
+{{- if .Values.istio.enabled   }}
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: world-service-{{ .Values.istio.virtualservice.name }}
+  labels:
+    release: {{ .Values.release.type }}
+spec:
+  hosts:
+  - world-service-world-service
+  gateways:
+  - mesh
+  http:
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        port:
+          number: 80
+        host: {{ .Release.Name }}-{{ .Values.service.name }}.{{ .Values.namespace }}.svc.cluster.local
+{{- if eq .Values.release.type "stable"  }}
+      weight: 100
+{{- end }}
+{{- if eq .Values.release.type "canary"  }}
+      weight: 50
+    - destination:
+        port:
+          number: 80
+        host: world-service-world-service.demo.svc.cluster.local
+      weight: 50
+{{- end }}
+{{- end }}

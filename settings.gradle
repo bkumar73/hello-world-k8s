@@ -1,0 +1,4 @@
+rootProject.name = 'hello-world-k8s'
+include 'hello-service'
+include 'world-service'
+
