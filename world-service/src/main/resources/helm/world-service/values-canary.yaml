@@ -10,7 +10,7 @@ deployment:
 secret:
   name: world-service
   data:
-    message: 'd29ybGQ='
+    message: 'Y2FuYXJ5LXdvcmxk'
 configMap:
   name: world-service
   data:
