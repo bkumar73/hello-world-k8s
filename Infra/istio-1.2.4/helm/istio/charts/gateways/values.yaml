@@ -48,7 +48,7 @@ istio-ingressgateway:
   externalIPs: []
   serviceAnnotations: {}
   podAnnotations: {}
-  type: LoadBalancer #change to NodePort, ClusterIP or LoadBalancer if need be
+  type: NodePort #change to NodePort, ClusterIP or LoadBalancer if need be
   #externalTrafficPolicy: Local #change to Local to preserve source IP or Cluster for default behaviour or leave commented out
   ports:
     ## You can add custom gateway ports

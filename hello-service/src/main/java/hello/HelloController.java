@@ -2,6 +2,8 @@ package hello;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,7 +17,7 @@ public class HelloController {
     private String message;
 
     @RequestMapping("/")
-    public String getData() {
-        return message + " "+client.getResponse();
+    public String getData(@RequestHeader HttpHeaders headers) {
+        return message + " "+client.getResponse(headers);
     }
 }

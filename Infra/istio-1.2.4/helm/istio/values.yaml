@@ -75,6 +75,8 @@ prometheus:
 #
 tracing:
   enabled: true
+  provider: zipkin
+
 
 #
 # addon kiali tracing configuration
