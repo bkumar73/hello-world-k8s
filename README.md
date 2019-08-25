@@ -18,7 +18,7 @@
     Deploy using kubectl:-
         kubectl create -f hello-service/src/main/resources/kubernetes/
 
-## Build Wrold Service and upload docker image
+## Build World Service and upload docker image
 
     ./gradlew world-service:dockerPush -Pdockerusername=yourdockerusername
 
