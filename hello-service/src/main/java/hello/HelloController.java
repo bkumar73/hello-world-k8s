@@ -18,6 +18,11 @@ public class HelloController {
 
     @RequestMapping("/")
     public String getData(@RequestHeader HttpHeaders headers) {
-        return message + " "+client.getResponse(headers);
+        try{
+            return message + " "+client.getResponse(headers);
+        }
+        catch (Exception e){
+            return "world-service not reachable!";
+        }
     }
 }
