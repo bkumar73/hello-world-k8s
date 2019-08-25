@@ -7,10 +7,13 @@ deployment:
   name: hello-service
   image: singhravindra/hello-service:latest
   port: '8080'
+secret:
+  name: hello-service
+  data:
+    message: 'aGVsbG8='
 configMap:
   name: hello-service
   data:
-    message: 'hello'
     world_service_address: 'http://world-service-world-service:80'
 image:
   repository: nginx

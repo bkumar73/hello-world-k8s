@@ -35,8 +35,8 @@ spec:
                 key: world_service_address
           - name: MESSAGE
             valueFrom:
-              configMapKeyRef:
-                name: {{ .Release.Name }}-{{ .Values.configMap.name }}
+              secretKeyRef:
+                name: {{ .Release.Name }}-{{ .Values.secret.name }}
                 key: message
           ports:
             - containerPort: {{ .Values.deployment.port }}

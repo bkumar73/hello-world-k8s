@@ -30,7 +30,7 @@ spec:
               key: world_service_address
         - name: MESSAGE
           valueFrom:
-            configMapKeyRef:
+            secretKeyRef:
               name: hello-service-hello-service
               key: message
         ports:

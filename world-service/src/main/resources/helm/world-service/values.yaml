@@ -7,6 +7,10 @@ deployment:
   name: world-service
   image: singhravindra/world-service:latest
   port: '8080'
+secret:
+  name: world-service
+  data:
+    message: 'd29ybGQ='
 configMap:
   name: world-service
   data:

@@ -30,7 +30,7 @@ spec:
         env:
         - name: MESSAGE
           valueFrom:
-            configMapKeyRef:
+            secretKeyRef:
               name: {{ .Release.Name }}-{{ .Values.configMap.name }}
               key: message
         ports:
