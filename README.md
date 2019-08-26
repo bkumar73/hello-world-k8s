@@ -58,10 +58,9 @@
 
     Enable Istio-Injection in namespace Demo:-
         kubectl apply -f Infra/namespace/demo.yaml
-    Change istio.enabled to true in values.yaml file in both service's helm charts.
 
-    helm upgrade --install  hello-service -f hello-service/src/main/resources/helm/hello-service/values.yaml  hello-service/src/main/resources/helm/hello-service --namespace=demo
-    helm upgrade --install  world-service -f world-service/src/main/resources/helm/world-service/values.yaml  world-service/src/main/resources/helm/world-service --namespace=demo
+    helm upgrade --install  hello-service -f hello-service/src/main/resources/helm/hello-service/values.yaml  hello-service/src/main/resources/helm/hello-service --namespace=demo --set istio.enabled=true
+    helm upgrade --install  world-service -f world-service/src/main/resources/helm/world-service/values.yaml  world-service/src/main/resources/helm/world-service --namespace=demo --set istio.enabled=true
 
 ## Accessing Hello and World Service
 

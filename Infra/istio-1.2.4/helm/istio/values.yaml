@@ -75,7 +75,6 @@ prometheus:
 #
 tracing:
   enabled: true
-  provider: zipkin
 
 
 #
