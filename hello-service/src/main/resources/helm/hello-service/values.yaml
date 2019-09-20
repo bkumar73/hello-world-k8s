@@ -60,7 +60,7 @@ tolerations: []
 
 affinity: {}
 istio:
-  enabled: false
+  enabled: true
   virtualservice:
     name: hello-service
 release:

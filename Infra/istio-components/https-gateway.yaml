@@ -1,0 +1,55 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  creationTimestamp: 2019-09-18T09:50:24Z
+  generation: 1
+  name: https-gateway
+  namespace: default
+  resourceVersion: "47879237"
+  selfLink: /apis/networking.istio.io/v1alpha3/namespaces/default/gateways/https-gateway
+  uid: bc58d9e6-d9f9-11e9-b432-00155d070a0e
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - hosts:
+    - cust360.yesgenie.com
+    port:
+      name: cust360-gateway
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      privateKey: /etc/istio/ingressgateway-cust360-certs/tls.key
+      serverCertificate: /etc/istio/ingressgateway-cust360-certs/tls.crt
+  - hosts:
+    - sso.yesgenie.com
+    port:
+      name: sso-gatway
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      privateKey: /etc/istio/ingressgateway-sso-certs/tls.key
+      serverCertificate: /etc/istio/ingressgateway-sso-certs/tls.crt
+  - hosts:
+    - admsso.genie.yesbank.com
+    port:
+      name: admsso-gatway
+      number: 443
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      privateKey: /etc/istio/ingressgateway-sso-certs/tls.key
+      serverCertificate: /etc/istio/ingressgateway-sso-certs/tls.crt
+  - hosts:
+    - ms.yesgenie.com
+    port:
+      name: ms-gateway
+      number: 443
+      protocol: HTTPS
+    tls:
+      caCertificates: /etc/istio/ingressgateway-ca-certs/ca-chain.cert.pem
+      mode: MUTUAL
+      privateKey: /etc/istio/ingressgateway-ms-certs/tls.key
+      serverCertificate: /etc/istio/ingressgateway-ms-certs/tls.crt

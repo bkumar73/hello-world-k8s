@@ -62,6 +62,6 @@ affinity: {}
 release:
   type: stable
 istio:
-  enabled: false
+  enabled: true
   virtualservice:
     name: world-service
