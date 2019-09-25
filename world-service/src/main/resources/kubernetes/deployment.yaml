@@ -22,8 +22,6 @@ spec:
       containers:
       - name: world-service
         image: singhravindra/world-service:latest
-      imagePullSecrets:
-      - name: regcred
         env:
         - name: MESSAGE
           valueFrom:
